@@ -1,4 +1,4 @@
-#lang scheme/gui
+#lang racket/gui
 (require sgl)
 
 (define world-canvas%
@@ -55,7 +55,7 @@
                   #:height height
                   #:width width
                   #:on-tick the-on-tick
-                  #:tick-rate tick-rate
+                  #:tick-rate timer-rate
                   #:on-key the-on-key
                   #:draw-init the-draw-init
                   #:on-draw the-on-draw
@@ -78,8 +78,6 @@
          [stretchable-height #f]
          [style '(no-resize-border metal)]))
   
-  (define timer-rate
-    (ceiling (* 1000 tick-rate)))
   (define timer
     (new timer%
          [notify-callback
@@ -120,7 +118,7 @@
                  #:height [height (integer-in 0 10000)]
                  #:width [width (integer-in 0 10000)]
                  #:on-tick [the-on-tick (world/c . -> . world/c)]
-                 #:tick-rate [tick-rate number?]
+                 #:tick-rate [tick-rate (integer-in 0 1000000000)]
                  #:on-key [the-on-key (world/c (is-a?/c key-event%) . -> . world/c)]
                  #:draw-init [the-draw-init (-> void)]
                  #:on-draw [the-on-draw (world/c . -> . void)]
