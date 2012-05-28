@@ -100,7 +100,7 @@
          [parent frame]
          [width width]
          [height height]
-         [style '(no-autoclear)]))
+         [style '(gl no-autoclear)]))
   
   (send canvas focus)
   (send frame center)
